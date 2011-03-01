@@ -52,5 +52,24 @@ public class StringUtils extends org.apache.commons.lang.StringUtils {
         return false;
     }
 
+        /**
+     * Method returns value contained in parameter <code>value</code> if this value is not blank.
+     * In other case is returnes value in parameter <code>replaceWith</code>.
+     * <p/>
+     * Behaviour is simmilar to Oracle function <code>nvl</code>
+     *
+     * @param value       Value to test
+     * @param replaceWith This value is returned when <code>value</code> is blank
+     * @return Value of parameter <code>value</code> when is not blank. Otherwise value of <code>replaceWith</code>
+     *         is returned
+     */
+    public static String notBlankValue(String value, String replaceWith) {
+        if (isBlank(value)) {
+            return replaceWith;
+        } else {
+            return value;
+        }
+    }
+
 
 }

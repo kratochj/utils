@@ -6,8 +6,7 @@ package eu.kratochvil.util;
 
 import org.junit.Test;
 
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*    ;
 
 /**
  * @author Jiri Kratochvil (jiri.kratochvil@jetminds.com)
@@ -46,5 +45,12 @@ public class StringUtilsTest {
         assertFalse(StringUtils.isXmlLike(NON_XML_EXAMPLE1));
         assertFalse(StringUtils.isXmlLike(NON_XML_EXAMPLE2));
         assertFalse(StringUtils.isXmlLike(NON_XML_EXAMPLE3));
+    }
+
+    @Test
+    public void testNotBlankValue() throws Exception {
+        assertEquals("TEST", StringUtils.notBlankValue("TEST", "ANOTHER"));
+        assertEquals("ANOTHER", StringUtils.notBlankValue("", "ANOTHER"));
+        assertEquals("ANOTHER", StringUtils.notBlankValue(null, "ANOTHER"));
     }
 }
