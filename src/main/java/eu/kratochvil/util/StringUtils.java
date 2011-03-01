@@ -10,9 +10,16 @@ import java.util.regex.Pattern;
 /**
  * Enrichment of standard commons-lang library from <a href="http://commons.apache.org">Apache</a>, which add some
  * new cool and fancy functions
+ * <p/>
+ * To "standard apache commons StringUtils" library were added theese functions:
+ * <ul>
+ * <li><strong>isXmlLike</strong> - check if string value looks life xml</li>
+ * <li><strong>notBlankValue</strong> - when arameter is blank, replace it with another value</li>
+ * </ul>
  *
  * @author Jiri Kratochvil (jiri.kratochvil@jetminds.com)
  * @version $Revision:$
+ * @see org.apache.commons.lang.StringUtils
  */
 public class StringUtils extends org.apache.commons.lang.StringUtils {
 
