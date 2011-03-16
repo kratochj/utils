@@ -6,7 +6,7 @@ package eu.kratochvil.util;
 
 import org.junit.Test;
 
-import static org.junit.Assert.*    ;
+import static org.junit.Assert.*;
 
 /**
  * @author Jiri Kratochvil (jiri.kratochvil@jetminds.com)
@@ -53,4 +53,13 @@ public class StringUtilsTest {
         assertEquals("ANOTHER", StringUtils.notBlankValue("", "ANOTHER"));
         assertEquals("ANOTHER", StringUtils.notBlankValue(null, "ANOTHER"));
     }
+
+    @Test
+    public void testPathTransformation() throws Exception {
+        assertEquals("aaaa.bbbb.cccc", StringUtils.transformToPackageName("/aaaa/bbbb/cccc"));
+        assertEquals("aaaa.bbbb.cccc", StringUtils.transformToPackageName("aaaa/bbbb/cccc"));
+        assertEquals("aaaa.bbbb.cccc", StringUtils.transformToPackageName("\\aaaa\\bbbb\\cccc"));
+        assertEquals("aaaa.bbbb.cccc.N_jak__nesmysl", StringUtils.transformToPackageName("/aaaa/bbbb/cccc/Nějaký-nesmysl"));
+    }
+
 }
