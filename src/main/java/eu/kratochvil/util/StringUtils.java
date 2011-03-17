@@ -15,6 +15,7 @@ import java.util.regex.Pattern;
  * <ul>
  * <li>{@link #isXmlLike} - check if string value looks life xml</li>
  * <li>{@link #notBlankValue} - when parameter is blank, replace it with another value</li>
+ * <li>{@link #nullValue} - when parameter is null, replace it with another value</li>
  * <li>{@link #transformToPackageName} - Transformation path to java package name</li>
  * </ul>
  *
@@ -113,6 +114,21 @@ public class StringUtils extends org.apache.commons.lang.StringUtils {
         } else {
             return value;
         }
+    }
+
+    /**
+     * Method returns value contained in parameter <code>value</code> if this value is not null.
+     * In other case is returnes value in parameter <code>replaceWith</code>.
+     * <p/>
+     * Behavior is same as Oracle function <code>nvl</code>
+     *
+     * @param value       Value to test
+     * @param replaceWith This value is returned when <code>value</code> is null
+     * @return Value of parameter <code>value</code> when is not null. Otherwise value of <code>replaceWith</code>
+     *         is returned
+     */
+    public static String nullValue(String value, String replaceWith) {
+        return (String)ObjectUtils.nullValue(value, replaceWith);
     }
 
 

@@ -62,4 +62,10 @@ public class StringUtilsTest {
         assertEquals("aaaa.bbbb.cccc.N_jak__nesmysl", StringUtils.transformToPackageName("/aaaa/bbbb/cccc/Nějaký-nesmysl"));
     }
 
+    @Test
+    public void testNullValue() throws Exception {
+        assertEquals("abcd", StringUtils.nullValue("abcd", "efgh"));
+        assertEquals("efgh", StringUtils.nullValue(null, "efgh"));
+        assertEquals(null, StringUtils.nullValue(null, null));
+    }
 }
