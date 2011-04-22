@@ -46,7 +46,7 @@ import java.util.Map;
  * </pre>
  *
  * @author Jiri Kratochvil (jiri.kratochvil@jetminds.com)
- * @version $Revision:$
+ * @since 1.0
  */
 public class SoapUtils {
 
