@@ -137,7 +137,7 @@ public class ExtendedAsserts {
         }
     }
 
-    private static String clearSpacesAndNLs(String value) {
+    protected static String clearSpacesAndNLs(String value) {
         StringBuilder _sb = new StringBuilder();
         for (char ch : value.toCharArray()) {
             if ((ch == '\n') || (ch == ' ')) {
