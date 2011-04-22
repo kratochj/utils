@@ -13,10 +13,10 @@ import java.util.regex.Pattern;
  * <p/>
  * To "standard apache commons StringUtils" library were added theese functions:
  * <ul>
- * <li>{@link #isXmlLike} - check if string value looks life xml</li>
- * <li>{@link #notBlankValue} - when parameter is blank, replace it with another value</li>
- * <li>{@link #nullValue} - when parameter is null, replace it with another value</li>
- * <li>{@link #transformToPackageName} - Transformation path to java package name</li>
+ * <li>{@link #isXmlLike(String)} - check if string value looks life xml</li>
+ * <li>{@link #notBlankValue(String, String)} - when parameter is blank, replace it with another value</li>
+ * <li>{@link #nullValue(String, String)} - when parameter is null, replace it with another value</li>
+ * <li>{@link #transformToPackageName(String)} - Transformation path to java package name</li>
  * </ul>
  *
  * @author Jiri Kratochvil (jiri.kratochvil@jetminds.com)

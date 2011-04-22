@@ -1,7 +1,3 @@
-/*
- * Created on 17.3.2011
- * (C) 2011 ICZ, a.s.
- */
 package eu.kratochvil.util;
 
 import org.junit.Test;

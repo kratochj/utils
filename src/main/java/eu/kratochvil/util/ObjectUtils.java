@@ -10,7 +10,7 @@ package eu.kratochvil.util;
  * <p/>
  * To "standard apache commons ObjectUtils" library were added theese functions:
  * <ul>
- * <li>{@link #nullValue} - when parameter is null, replace it with another value</li>
+ * <li>{@link #nullValue(String, String)} - when parameter is null, replace it with another value</li>
  * </ul>
  *
  * @author Jiri Kratochvil (jiri.kratochvil@jetminds.com)

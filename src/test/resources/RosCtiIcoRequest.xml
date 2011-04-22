@@ -1,0 +1,32 @@
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/"
+                  xmlns:urn="urn:cz:isvs:ros:schemas:RosUnivDotazy:v1"
+                  xmlns:data="urn:cz:isvs:ros:schemas:RosDotazyData:v2" xmlns:reg="urn:cz:isvs:reg:schemas:RegTypy:v1">
+    <soapenv:Header/>
+    <soapenv:Body>
+        <urn:RosSyncDotaz verzeZadosti="${VERSION}">
+            <urn:KodSluzby>${KOD_SLUZBY}</urn:KodSluzby>
+            <urn:ZadostInfo>
+                <reg:CasZadosti>${TIME}</reg:CasZadosti>
+                <reg:Agenda>IAIS</reg:Agenda>
+                <reg:OvmAgendy>OVM1</reg:OvmAgendy>
+                <reg:Ais>AIS1</reg:Ais>
+                <reg:Subjekt>Subjekt1</reg:Subjekt>
+                <reg:Uzivatel>Uživatel1</reg:Uzivatel>
+                <reg:DuvodUcel>Důvod a účel 1</reg:DuvodUcel>
+                <reg:AgendaZadostId>${AGENDA_ID}</reg:AgendaZadostId>
+                <reg:IszrZadostId>${ZADOST_ID}</reg:IszrZadostId>
+            </urn:ZadostInfo>
+            <urn:AutorizaceInfo>
+                <reg:Role>?</reg:Role>
+                <reg:MaximalniPocetZaznamu>10</reg:MaximalniPocetZaznamu>
+                <reg:SeznamUdaju>
+                </reg:SeznamUdaju>
+            </urn:AutorizaceInfo>
+            <urn:Dotaz verzeSluzby="${VERSION}">
+                <data:RosCtiIcoData>
+                    <data:pp>${VALUE}</data:pp>
+                </data:RosCtiIcoData>
+            </urn:Dotaz>
+        </urn:RosSyncDotaz>
+    </soapenv:Body>
+</soapenv:Envelope>

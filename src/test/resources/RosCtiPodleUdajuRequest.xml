@@ -1,0 +1,43 @@
+<env:Envelope xmlns:env="http://schemas.xmlsoap.org/soap/envelope/">
+    <env:Header/>
+    <env:Body>
+        <ns2:RobSyncDotaz xmlns:ns2="urn:cz:isvs:rob:schemas:RobUnivDotazy:v1"
+                          xmlns:ns3="urn:cz:isvs:reg:schemas:RegTypy:v1"
+                          xmlns:ns4="urn:cz:isvs:rob:schemas:RobUnivEditace:v1" verzeZadosti="${VERZE_ZADOSTI}">
+            <ns2:KodSluzby>RobCtiPodleUdaju</ns2:KodSluzby>
+            <ns2:ZadostInfo>
+                <ns3:CasZadosti>${TIME}</ns3:CasZadosti>
+                <ns3:Agenda>agenda1</ns3:Agenda>
+                <ns3:OvmAgendy>12345678</ns3:OvmAgendy>
+                <ns3:Ais>IAIS-ROS</ns3:Ais>
+                <ns3:Subjekt>12345678</ns3:Subjekt>
+                <ns3:Uzivatel>iais.user.gestoreditor</ns3:Uzivatel>
+                <ns3:AgendaZadostId>${AGENDA_ID}</ns3:AgendaZadostId>
+                <ns3:IszrZadostId>${ZADOST_ID}</ns3:IszrZadostId>
+            </ns2:ZadostInfo>
+            <ns2:AutorizaceInfo>
+                <ns3:Role>GESTOREDITOR</ns3:Role>
+                <ns3:SeznamUdaju>
+                    <ns3:RobSeznamUdaju></ns3:RobSeznamUdaju>
+                </ns3:SeznamUdaju>
+            </ns2:AutorizaceInfo>
+            <ns2:MapaAifo/>
+            <ns2:SeznamIdAdres/>
+            <ns2:Dotaz verzeSluzby="${VERZE_SLUZBY}">
+                <ns6:RobCtiPodleUdajuData xmlns:ns6="urn:cz:isvs:rob:schemas:RobDotazyData:v1"
+                                          xmlns="urn:cz:isvs:ros:schemas:RosTypy:v2"
+                                          xmlns:ns2="urn:cz:isvs:ros:schemas:RosEditaceData:v2"
+                                          xmlns:ns3="urn:cz:isvs:ros:schemas:RosEditaceTypy:v1"
+                                          xmlns:ns4="urn:cz:isvs:ros:schemas:RosDotazyData:v2"
+                                          xmlns:ns5="urn:cz:isvs:ros:schemas:RosDotazyTypy:v1"
+                                          xmlns:ns7="urn:cz:isvs:rob:schemas:RobTypy:v1">
+                    <ns6:MaximalniPocet>${NO_OF_RESULT}</ns6:MaximalniPocet>
+                    <ns6:DatumNarozeni>${BIRTH_DATE}</ns6:DatumNarozeni>
+                    <ns6:DatumUmrtiUrcenoSoudem>${DATUM_UMRTI_URCENO_SOUDEM}</ns6:DatumUmrtiUrcenoSoudem>
+                    <ns6:Jmeno>${FIRSTNAME}</ns6:Jmeno>
+                    <ns6:Prijmeni>${LASTNAME}</ns6:Prijmeni>
+                </ns6:RobCtiPodleUdajuData>
+            </ns2:Dotaz>
+        </ns2:RobSyncDotaz>
+    </env:Body>
+</env:Envelope>
