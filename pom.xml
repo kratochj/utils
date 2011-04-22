@@ -10,12 +10,6 @@
     <name>java-utils</name>
     <url>http://jiri.kratochvil.eu</url>
 
-    <parent>
-        <groupId>org.sonatype.oss</groupId>
-        <artifactId>oss-parent</artifactId>
-        <version>7</version>
-    </parent>
-
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
@@ -34,10 +28,16 @@
         </developer>
     </developers>
 
+    <parent>
+        <groupId>org.sonatype.oss</groupId>
+        <artifactId>oss-parent</artifactId>
+        <version>7</version>
+    </parent>
+
     <scm>
-        <connection>scm:git:git://github.com/kratochj/utils.git</connection>
-        <url>scm:git:git://github.com/kratochj/utils.git</url>
-        <developerConnection>scm:git:git://github.com/kratochj/utils.git</developerConnection>
+        <connection>scm:git:git@github.com:kratochj/utils.git</connection>
+        <url>scm:git:git@github.com:kratochj/utils.git</url>
+        <developerConnection>scm:git:git@github.com:kratochj/utils.git</developerConnection>
     </scm>
 
     <licenses>
