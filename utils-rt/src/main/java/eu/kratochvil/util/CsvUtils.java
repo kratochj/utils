@@ -13,8 +13,21 @@ import java.util.List;
 import java.util.Map;
 
 /**
+ * Parser for CSV files with caching for quick random access to specified row in file.
+ * CSV parser expects that on first row is header with field names.
+ *
+ * As result of {@link #read(String, int) call} is map with field name as key and
+ * corresponding values in given row.
+ *
+ * Parser supports dynamic generated fields in source files such as GUID or actual
+ * date. Implementation is done by {@link Decorator decorators}
+ *
  * @author Jiri Kratochvil (jiri.kratochvil@jetminds.com)
  * @version $Revision:$
+ * @see Decorator
+ * @see GuidDecorator
+ * @see TimeDecorator
+ * @since 1.0
  */
 public class CsvUtils {
 
@@ -31,7 +44,7 @@ public class CsvUtils {
     }
 
 
-    public static String[] readHeader(String filename) throws IOException {
+    protected static String[] readHeader(String filename) throws IOException {
         URL url = SoapUtils.class.getResource(filename);
         if (url == null) {
             throw new FileNotFoundException(filename);

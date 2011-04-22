@@ -7,8 +7,10 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /**
+ * Returns current time in iso format (i.e. for webservices)
+ *
  * @author Jiri Kratochvil (jiri.kratochvil@jetminds.com)
- * @version $Revision:$
+ * @since 1.0
  */
 public class TimeDecorator implements Decorator {
 
