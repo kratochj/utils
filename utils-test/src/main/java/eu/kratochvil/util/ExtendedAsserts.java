@@ -1,6 +1,5 @@
 package eu.kratochvil.util;
 
-import junit.framework.AssertionFailedError;
 import org.junit.Assert;
 import org.junit.ComparisonFailure;
 
@@ -8,53 +7,99 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
+ * Extended basic set of junit {@link Assert asserts}:
+ * <ul>
+ * <li><strong>assertEqualsWithIgnore</strong> - Expaded functionality of {@link Assert#assertEquals(Object, Object)}
+ * with support for placeholder as some kind of wildcard</li>
+ * <li><strong>assertEqualsWithIgnoreWithoutSpacesAndNL</strong> - Similar to {@link #assertEqualsWithIgnore(String, String)}
+ * but ignores spaces and new lines</li>
+ * </ul>
+ *
  * @author Jiri Kratochvil (jiri.kratochvil@jetminds.com)
- * @version $Revision:$
+ * @since 1.0
  */
 public class ExtendedAsserts {
-    public static final Logger logger = Logger.getLogger(ExtendedAsserts.class.getName());
+    private static final Logger logger = Logger.getLogger(ExtendedAsserts.class.getName());
 
+    /**
+     * Default placeholder that represents wildcard character
+     */
     public static final String DEFAULT_IGNORE_PLACEHOLDER = "${IGNORE}";
 
-    public static void fail() {
-        fail(null);
-    }
 
-    public static void fail(String message) {
-        throw new AssertionFailedError(message);
-    }
-
-    protected static String clearSpacesAndNLs(String value) {
-        StringBuilder _sb = new StringBuilder();
-        for (char ch : value.toCharArray()) {
-            if ((ch == '\n') || (ch == ' ')) {
-                continue;
-            }
-            _sb.append(ch);
-        }
-        return _sb.toString();
-    }
-
+    /**
+     * Similar to {@link #assertEqualsWithIgnore(String, String)} but ignores spaces and new lines
+     *
+     * @param expected Expected string (could contain wildcard)
+     * @param actual   String value to be checked
+     * @throws ComparisonFailure When expected and actual strings are not equals
+     */
     public static void assertEqualsWithIgnoreWithoutSpacesAndNL(String expected, String actual) {
         assertEqualsWithIgnore("", clearSpacesAndNLs(expected), clearSpacesAndNLs(actual));
     }
+
+    /**
+     * Similar to {@link #assertEqualsWithIgnore(String, String)} but ignores spaces and new lines
+     *
+     * @param message  Message shown when assertion fails
+     * @param expected Expected string (could contain wildcard)
+     * @param actual   String value to be checked
+     * @throws ComparisonFailure When expected and actual strings are not equals
+     */
     public static void assertEqualsWithIgnoreWithoutSpacesAndNL(String message, String expected, String actual) {
         assertEqualsWithIgnore(message, clearSpacesAndNLs(expected), clearSpacesAndNLs(actual));
-    }        
+    }
+
+    /**
+     * Similar to {@link #assertEqualsWithIgnore(String, String)} but ignores spaces and new lines
+     *
+     * @param message           Message shown when assertion fails
+     * @param expected          Expected string (could contain wildcard)
+     * @param actual            String value to be checked
+     * @param ignorePlaceholder Custom defined wildcard string
+     * @throws ComparisonFailure When expected and actual strings are not equals
+     */
     public static void assertEqualsWithIgnoreWithoutSpacesAndNL(String message, String expected, String actual, String ignorePlaceholder) {
         assertEqualsWithIgnore(message, clearSpacesAndNLs(expected), clearSpacesAndNLs(actual), ignorePlaceholder);
     }
 
+    /**
+     * Expaded functionality of {@link Assert#assertEquals(Object, Object)} with support for placeholder as
+     * some kind of wildcard
+     *
+     * @param message  Message shown when assertion fails
+     * @param expected Expected string (could contain wildcard)
+     * @param actual   String value to be checked
+     * @throws ComparisonFailure When expected and actual strings are not equals
+     */
     public static void assertEqualsWithIgnore(String message, String expected, String actual) {
         assertEqualsWithIgnore(message, expected, actual, DEFAULT_IGNORE_PLACEHOLDER);
 
     }
 
+    /**
+     * Expaded functionality of {@link Assert#assertEquals(Object, Object)} with support for placeholder as
+     * some kind of wildcard
+     *
+     * @param expected Expected string (could contain wildcard)
+     * @param actual   String value to be checked
+     * @throws ComparisonFailure When expected and actual strings are not equals
+     */
     public static void assertEqualsWithIgnore(String expected, String actual) {
         assertEqualsWithIgnore("", expected, actual, DEFAULT_IGNORE_PLACEHOLDER);
     }
 
 
+    /**
+     * Expaded functionality of {@link Assert#assertEquals(Object, Object)} with support for placeholder as
+     * some kind of wildcard
+     *
+     * @param message           Message shown when assertion fails
+     * @param expected          Expected string (could contain wildcard)
+     * @param actual            String value to be checked
+     * @param ignorePlaceholder Custom defined wildcard string
+     * @throws ComparisonFailure When expected and actual strings are not equals
+     */
     public static void assertEqualsWithIgnore(String message, String expected, String actual, String ignorePlaceholder) {
         try {
             Assert.assertEquals(message, expected, actual);
@@ -90,8 +135,18 @@ public class ExtendedAsserts {
         } catch (StringIndexOutOfBoundsException e) {
             throw new ComparisonFailure(message, expected, actual);
         }
-
-
     }
+
+    private static String clearSpacesAndNLs(String value) {
+        StringBuilder _sb = new StringBuilder();
+        for (char ch : value.toCharArray()) {
+            if ((ch == '\n') || (ch == ' ')) {
+                continue;
+            }
+            _sb.append(ch);
+        }
+        return _sb.toString();
+    }
+
 
 }
