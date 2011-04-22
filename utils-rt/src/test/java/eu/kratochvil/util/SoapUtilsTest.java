@@ -83,7 +83,7 @@ public class SoapUtilsTest {
             "                    <ns6:DatumNarozeni>1960-07-23+01:00</ns6:DatumNarozeni>\n" +
             "                    <ns6:DatumUmrtiUrcenoSoudem>false</ns6:DatumUmrtiUrcenoSoudem>\n" +
             "                    <ns6:Jmeno>Marie</ns6:Jmeno>\n" +
-            "                    <ns6:Prijmeni>Novaková</ns6:Prijmeni>\n" +
+            "                    <ns6:Prijmeni>Novakova</ns6:Prijmeni>\n" +
             "                </ns6:RobCtiPodleUdajuData>\n" +
             "            </ns2:Dotaz>\n" +
             "        </ns2:RobSyncDotaz>\n" +
