@@ -2,9 +2,9 @@ package eu.kratochvil.util;
 
 import org.junit.Assert;
 import org.junit.ComparisonFailure;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  * Extended basic set of junit {@link Assert asserts}:
@@ -19,7 +19,8 @@ import java.util.logging.Logger;
  * @since 1.0
  */
 public class ExtendedAsserts {
-    private static final Logger logger = Logger.getLogger(ExtendedAsserts.class.getName());
+
+    public static final Logger logger = LoggerFactory.getLogger(ExtendedAsserts.class);
 
     /**
      * Default placeholder that represents wildcard character
@@ -105,7 +106,7 @@ public class ExtendedAsserts {
             Assert.assertEquals(message, expected, actual);
             return;
         } catch (ComparisonFailure e) {
-            logger.log(Level.FINE, "Common assertEquals returns comparsion failure", e);
+            logger.trace("Common assertEquals returns comparsion failure");
         }
 
         try {
