@@ -10,6 +10,25 @@ List of features
 * Classes for generating soap requests and parsing csv files
 * Package for unit testing with some set of classes that will make unit-testing easier
 
+
+Usage
+-----
+Libraries are placed into maven cetral repository therefore is nothing special to do.
+Just simple add dependency in your project as example:
+
+    <dependency>
+        <groupId>eu.kratochvil</groupId>
+        <artifactId>utils-rt</artifactId>
+        <version>1.1</version>
+    </dependency>
+    <dependency>
+        <groupId>eu.kratochvil</groupId>
+        <artifactId>utils-test</artifactId>
+        <version>1.1</version>
+        <scope>test</scope>
+    </dependency>
+
+
 Contribution
 -----------------
 If you want contribute to this project, please follow theese instructions:
