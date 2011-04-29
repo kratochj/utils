@@ -1,0 +1,8 @@
+<env:Envelope xmlns:env="http://schemas.xmlsoap.org/soap/envelope/">
+   <env:Header/>
+   <env:Body>
+      <ns2:response xmlns:ns2="urn:eu:kratochvil:schemas:test:v1">
+         <ns2:data>RosCtiIco</ns2:data>
+      </ns2:response>
+   </env:Body>
+</env:Envelope>

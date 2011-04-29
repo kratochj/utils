@@ -27,7 +27,7 @@ import java.io.IOException;
  * @author Jiri Kratochvil (jiri.kratochvil@jetminds.com)
  * @version $Revision:$
  */
-public class SoapUtils {
+public class TestSoapUtils {
 
 
     /**
@@ -55,13 +55,13 @@ public class SoapUtils {
     public static MessageContext createMessageContext(String soapXmlFileRequest, String soapXmlFileResponse) throws SOAPException, IOException {
         MessageFactory messageFactory = MessageFactory.newInstance();
         SaajSoapMessageFactory saajSoapMessageFactory = new SaajSoapMessageFactory(messageFactory);
-        SOAPMessage soapMessage = SaajUtils.loadMessage(new ClassPathResource(soapXmlFileRequest, SoapUtils.class), messageFactory);
+        SOAPMessage soapMessage = SaajUtils.loadMessage(new ClassPathResource(soapXmlFileRequest, TestSoapUtils.class), messageFactory);
         SaajSoapMessage saajSoapMessage = new SaajSoapMessage(soapMessage);
 
         MessageContext messageContext = new DefaultMessageContext(saajSoapMessage, saajSoapMessageFactory);
 
         if (soapXmlFileResponse != null) {
-            SOAPMessage soapMessageResponse = SaajUtils.loadMessage(new ClassPathResource(soapXmlFileResponse, SoapUtils.class), messageFactory);
+            SOAPMessage soapMessageResponse = SaajUtils.loadMessage(new ClassPathResource(soapXmlFileResponse, TestSoapUtils.class), messageFactory);
             SaajSoapMessage saajSoapMessageResponse = new SaajSoapMessage(soapMessageResponse);
             messageContext.setResponse(saajSoapMessageResponse);
         }

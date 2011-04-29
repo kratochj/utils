@@ -1,0 +1,9 @@
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/"
+                  xmlns="urn:eu:kratochvil:schemas:test:v1">
+    <soapenv:Header/>
+    <soapenv:Body>
+        <test >
+            <data>xxx</data>
+        </test>
+    </soapenv:Body>
+</soapenv:Envelope>

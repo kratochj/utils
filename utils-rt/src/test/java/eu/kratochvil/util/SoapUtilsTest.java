@@ -114,7 +114,7 @@ public class SoapUtilsTest {
     @Test
     public void testRosCtiIcoSoapRequestFromNonExistingFile() throws Exception {
         try {
-            SoapUtils.getSoapFromFile("XXXRosCtiIcoRequest.xml", "xxx.csv", 5);
+           SoapUtils.getSoapFromFile("XXXRosCtiIcoRequest.xml", "xxx.csv", 5);
         } catch (FileNotFoundException e) {
             return;
         }
