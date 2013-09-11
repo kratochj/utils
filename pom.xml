@@ -22,7 +22,7 @@
         <developer>
             <id>JKR</id>
             <name>Jiri Kratochvil</name>
-            <organization>JetMinds</organization>
+            <organization>TopMonks</organization>
             <url>http://jiri.kratochvil.eu</url>
         </developer>
     </developers>
@@ -34,9 +34,9 @@
     </parent>
 
     <scm>
-        <connection>scm:git:git@github.com:kratochj/utils.git</connection>
-        <url>scm:git:git@github.com:kratochj/utils.git</url>
-        <developerConnection>scm:git:git@github.com:kratochj/utils.git</developerConnection>
+        <connection>scm:git@git.kratochvil.eu:kratochj/java-utils.git</connection>
+        <url>scm:git@git.kratochvil.eu:kratochj/java-utils.git</url>
+        <developerConnection>scm:git@git.kratochvil.eu:kratochj/java-utils.git</developerConnection>
     </scm>
 
     <licenses>
