@@ -128,7 +128,7 @@ public class StringUtils extends org.apache.commons.lang.StringUtils {
      *         is returned
      */
     public static String nullValue(String value, String replaceWith) {
-        return (String)ObjectUtils.nullValue(value, replaceWith);
+        return (String)ObjectUtils.defaultIfNull(value, replaceWith);
     }
 
 

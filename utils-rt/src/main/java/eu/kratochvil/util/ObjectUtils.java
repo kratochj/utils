@@ -34,6 +34,8 @@ public class ObjectUtils extends org.apache.commons.lang.ObjectUtils {
      * @param object  the <code>Object</code> to test, may be <code>null</code>
      * @param defaultValue  the default value to return, may be <code>null</code>
      * @return <code>object</code> if it is not <code>null</code>, defaultValue otherwise
+     *
+     * @deprecated Use {@link org.apache.commons.lang.ObjectUtils#defaultIfNull(Object, Object)} instead of this
      */
     public static Object nullValue(String object, String defaultValue) {
         return defaultIfNull(object, defaultValue);
