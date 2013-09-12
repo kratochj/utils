@@ -11,7 +11,8 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import javax.naming.Context;
 import javax.naming.InitialContext;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 
 /**
  * @author Jiri Kratochvil <jiri.kratochvil@topmonks.com>
