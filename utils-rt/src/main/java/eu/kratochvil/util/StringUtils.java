@@ -7,6 +7,8 @@ package eu.kratochvil.util;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import eu.kratochvil.util.helpers.MessageFormatter;
+
 /**
  * Enrichment of standard commons-lang library from <a href="http://commons.apache.org">Apache</a>, which add some
  * new cool and fancy functions
@@ -17,6 +19,7 @@ import java.util.regex.Pattern;
  * <li>{@link #notBlankValue(String, String)} - when parameter is blank, replace it with another value</li>
  * <li>{@link #nullValue(String, String)} - when parameter is null, replace it with another value</li>
  * <li>{@link #transformToPackageName(String)} - Transformation path to java package name</li>
+ * <li>{@link #withArgs(String, Object[])} </li>
  * </ul>
  *
  * @author Jiri Kratochvil (jiri.kratochvil@jetminds.com)
@@ -128,8 +131,67 @@ public class StringUtils extends org.apache.commons.lang.StringUtils {
      *         is returned
      */
     public static String nullValue(String value, String replaceWith) {
-        return (String)ObjectUtils.defaultIfNull(value, replaceWith);
+        return (String) ObjectUtils.defaultIfNull(value, replaceWith);
     }
 
+
+    /**
+     * Same principle as the {@link #withArgs(String, Object)} and
+     * {@link #withArgs(String, Object, Object)} methods except that any number of
+     * arguments can be passed in an array.
+     *
+     * @param value    The message pattern which will be parsed and formatted
+     * @param argArray An array of arguments to be substituted in place of
+     *                 formatting anchors
+     * @return The formatted message
+     */
+    public static String withArgs(String value, Object[] argArray) {
+        return MessageFormatter.arrayFormat(value, argArray);
+    }
+
+    /**
+     * Performs a two argument substitution for the 'messagePattern' passed as
+     * parameter.
+     * <p/>
+     * For example,
+     * <p/>
+     * <pre>
+     * StringUtils.withArgs(&quot;Hi {}. My name is {}.&quot;, &quot;Alice&quot;, &quot;Bob&quot;);
+     * </pre>
+     * <p/>
+     * will return the string "Hi Alice. My name is Bob.".
+     *
+     * @param value The message pattern which will be parsed and formatted
+     * @param arg1  The argument to be substituted in place of the first
+     *              formatting anchor
+     * @param arg2  The argument to be substituted in place of the second
+     *              formatting anchor
+     * @return The formatted message
+     */
+    public static String withArgs(String value, Object arg1, Object arg2) {
+        return withArgs(value, new Object[]{arg1, arg2});
+    }
+
+    /**
+     * Performs single argument substitution for the 'messagePattern' passed as
+     * parameter.
+     * <p/>
+     * For example,
+     * <p/>
+     * <pre>
+     * StringUtils.withArgs(&quot;Hi {}.&quot;, &quot;there&quot;);
+     * </pre>
+     * <p/>
+     * will return the string "Hi there.".
+     * <p/>
+     *
+     * @param value The message pattern which will be parsed and formatted
+     * @param arg   The argument to be substituted in place of the formatting
+     *              anchor
+     * @return The formatted message
+     */
+    final public static String withArgs(String value, Object arg) {
+        return withArgs(value, new Object[]{arg});
+    }
 
 }
