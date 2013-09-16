@@ -64,4 +64,19 @@ public class StringUtilsTest {
         assertEquals("efgh", StringUtils.nullValue(null, "efgh"));
         assertEquals(null, StringUtils.nullValue(null, null));
     }
+
+    @Test
+    public void testWithArgs1() throws Exception {
+        assertEquals("Hi there!", StringUtils.withArgs("Hi {}!", "there"));
+    }
+
+    @Test
+    public void testWithArgs2() throws Exception {
+        assertEquals("Hi Tom, hello James!", StringUtils.withArgs("Hi {}, hello {}!", "Tom", "James"));
+    }
+
+    @Test
+    public void testWithArgs3() throws Exception {
+        assertEquals("Hi Tom, hello James! I am Jiri...", StringUtils.withArgs("Hi {}, hello {}! I am {}...", new String[]{"Tom", "James", "Jiri"}));
+    }
 }
