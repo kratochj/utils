@@ -6,53 +6,53 @@ import java.util.Map;
 /**
  * Formats messages according to very simple substitution rules. Substitutions
  * can be made 1, 2 or more arguments.
- * <p>
+ * <p/>
  * For example,
- *
+ * <p/>
  * <pre>
  * MessageFormatter.format(&quot;Hi {}.&quot;, &quot;there&quot;)
  * </pre>
- *
+ * <p/>
  * will return the string "Hi there.".
- * <p>
+ * <p/>
  * The {} pair is called the <em>formatting anchor</em>. It serves to
  * designate the location where arguments need to be substituted within the
  * message pattern.
- * <p>
+ * <p/>
  * In case your message contains the '{' or the '}' character, you do not have
  * to do anything special unless the '}' character immediately follows '{'. For
  * example,
- *
+ * <p/>
  * <pre>
  * MessageFormatter.format(&quot;Set {1,2,3} is not equal to {}.&quot;, &quot;1,2&quot;);
  * </pre>
- *
+ * <p/>
  * will return the string "Set {1,2,3} is not equal to 1,2.".
- *
- * <p>
+ * <p/>
+ * <p/>
  * If for whatever reason you need to place the string "{}" in the message
  * without its <em>formatting anchor</em> meaning, then you need to escape the
  * '{' character with '\', that is the backslash character. Only the '{'
  * character should be escaped. There is no need to escape the '}' character.
  * For example,
- *
+ * <p/>
  * <pre>
  * MessageFormatter.format(&quot;Set \\{} is not equal to {}.&quot;, &quot;1,2&quot;);
  * </pre>
- *
+ * <p/>
  * will return the string "Set {} is not equal to 1,2.".
- *
- * <p>
+ * <p/>
+ * <p/>
  * The escaping behavior just described can be overridden by escaping the escape
  * character '\'. Calling
- *
+ * <p/>
  * <pre>
  * MessageFormatter.format(&quot;File name is C:\\\\{}.&quot;, &quot;file.zip&quot;);
  * </pre>
- *
+ * <p/>
  * will return the string "File name is C:\file.zip".
- *
- * <p>
+ * <p/>
+ * <p/>
  * See {@link #format(String, Object)}, {@link #format(String, Object, Object)}
  * and {@link #arrayFormat(String, Object[])} methods for more details.
  *
@@ -60,60 +60,54 @@ import java.util.Map;
  */
 final public class MessageFormatter {
     static final char DELIM_START = '{';
-    static final char DELIM_STOP = '}';
+    //static final char DELIM_STOP = '}';
     static final String DELIM_STR = "{}";
     private static final char ESCAPE_CHAR = '\\';
 
     /**
      * Performs single argument substitution for the 'messagePattern' passed as
      * parameter.
-     * <p>
+     * <p/>
      * For example,
-     *
+     * <p/>
      * <pre>
      * MessageFormatter.format(&quot;Hi {}.&quot;, &quot;there&quot;);
      * </pre>
-     *
+     * <p/>
      * will return the string "Hi there.".
-     * <p>
+     * <p/>
      *
-     * @param messagePattern
-     *                The message pattern which will be parsed and formatted
-     * @param arg
-     *                The argument to be substituted in place of the formatting
-     *                anchor
+     * @param messagePattern The message pattern which will be parsed and formatted
+     * @param arg            The argument to be substituted in place of the formatting
+     *                       anchor
      * @return The formatted message
      */
-    final public static String format(String messagePattern, Object arg) {
-        return arrayFormat(messagePattern, new Object[] { arg });
+    public static String format(String messagePattern, Object arg) {
+        return arrayFormat(messagePattern, new Object[]{arg});
     }
 
     /**
-     *
      * Performs a two argument substitution for the 'messagePattern' passed as
      * parameter.
-     * <p>
+     * <p/>
      * For example,
-     *
+     * <p/>
      * <pre>
      * MessageFormatter.format(&quot;Hi {}. My name is {}.&quot;, &quot;Alice&quot;, &quot;Bob&quot;);
      * </pre>
-     *
+     * <p/>
      * will return the string "Hi Alice. My name is Bob.".
      *
-     * @param messagePattern
-     *                The message pattern which will be parsed and formatted
-     * @param arg1
-     *                The argument to be substituted in place of the first
-     *                formatting anchor
-     * @param arg2
-     *                The argument to be substituted in place of the second
-     *                formatting anchor
+     * @param messagePattern The message pattern which will be parsed and formatted
+     * @param arg1           The argument to be substituted in place of the first
+     *                       formatting anchor
+     * @param arg2           The argument to be substituted in place of the second
+     *                       formatting anchor
      * @return The formatted message
      */
-    final public static String format(final String messagePattern, Object arg1,
+    public static String format(final String messagePattern, Object arg1,
             Object arg2) {
-        return arrayFormat(messagePattern, new Object[] { arg1, arg2 });
+        return arrayFormat(messagePattern, new Object[]{arg1, arg2});
     }
 
     /**
@@ -121,14 +115,12 @@ final public class MessageFormatter {
      * {@link #format(String, Object, Object)} methods except that any number of
      * arguments can be passed in an array.
      *
-     * @param messagePattern
-     *                The message pattern which will be parsed and formatted
-     * @param argArray
-     *                An array of arguments to be substituted in place of
-     *                formatting anchors
+     * @param messagePattern The message pattern which will be parsed and formatted
+     * @param argArray       An array of arguments to be substituted in place of
+     *                       formatting anchors
      * @return The formatted message
      */
-    final public static String arrayFormat(final String messagePattern,
+    public static String arrayFormat(final String messagePattern,
             final Object[] argArray) {
         if (messagePattern == null) {
             return null;
@@ -165,13 +157,13 @@ final public class MessageFormatter {
                         // itself escaped: "abc x:\\{}"
                         // we have to consume one backward slash
                         sbuf.append(messagePattern.substring(i, j - 1));
-                        deeplyAppendParameter(sbuf, argArray[L], new HashMap());
+                        deeplyAppendParameter(sbuf, argArray[L], new HashMap<Object[], Object>());
                         i = j + 2;
                     }
                 } else {
                     // normal case
                     sbuf.append(messagePattern.substring(i, j));
-                    deeplyAppendParameter(sbuf, argArray[L], new HashMap());
+                    deeplyAppendParameter(sbuf, argArray[L], new HashMap<Object[], Object>());
                     i = j + 2;
                 }
             }
@@ -181,28 +173,20 @@ final public class MessageFormatter {
         return sbuf.toString();
     }
 
-    final static boolean isEscapedDelimeter(String messagePattern,
+    static boolean isEscapedDelimeter(String messagePattern,
             int delimeterStartIndex) {
 
         if (delimeterStartIndex == 0) {
             return false;
         }
         char potentialEscape = messagePattern.charAt(delimeterStartIndex - 1);
-        if (potentialEscape == ESCAPE_CHAR) {
-            return true;
-        } else {
-            return false;
-        }
+        return potentialEscape == ESCAPE_CHAR;
     }
 
-    final static boolean isDoubleEscaped(String messagePattern,
+    static boolean isDoubleEscaped(String messagePattern,
             int delimeterStartIndex) {
-        if (delimeterStartIndex >= 2
-                && messagePattern.charAt(delimeterStartIndex - 2) == ESCAPE_CHAR) {
-            return true;
-        } else {
-            return false;
-        }
+        return delimeterStartIndex >= 2
+                && messagePattern.charAt(delimeterStartIndex - 2) == ESCAPE_CHAR;
     }
 
     // special treatment of array values was suggested by 'lizongbo'
@@ -243,8 +227,8 @@ final public class MessageFormatter {
         try {
             String oAsString = o.toString();
             sbuf.append(oAsString);
-        } catch( Throwable t) {
-            System.err.println("SLF4J: Failed toString() invocation on an object of type ["+o.getClass().getName()+"]");
+        } catch (Throwable t) {
+            System.err.println("SLF4J: Failed toString() invocation on an object of type [" + o.getClass().getName() + "]");
             t.printStackTrace();
             sbuf.append("[FAILED toString()]");
         }
@@ -255,6 +239,7 @@ final public class MessageFormatter {
             Map seenMap) {
         sbuf.append('[');
         if (!seenMap.containsKey(a)) {
+            //noinspection unchecked
             seenMap.put(a, null);
             final int len = a.length;
             for (int i = 0; i < len; i++) {

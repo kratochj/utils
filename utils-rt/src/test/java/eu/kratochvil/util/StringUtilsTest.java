@@ -76,7 +76,14 @@ public class StringUtilsTest {
     }
 
     @Test
-    public void testWithArgs3() throws Exception {
-        assertEquals("Hi Tom, hello James! I am Jiri...", StringUtils.withArgs("Hi {}, hello {}! I am {}...", new String[]{"Tom", "James", "Jiri"}));
+    public void testWithArgsObjectArray() throws Exception {
+        // because of testing backward compatibility ...
+        //noinspection RedundantArrayCreation
+        assertEquals("Hi Tom, hello James! I am Jiri...", StringUtils.withArgs("Hi {}, hello {}! I am {}...", new Object[]{"Tom", "James", "Jiri"}));
+    }
+
+    @Test
+    public void testWithArgsVarArgs() throws Exception {
+        assertEquals("Hi Tom, hello James! I am Jiri...", StringUtils.withArgs("Hi {}, hello {}! I am {}...", "Tom", "James", "Jiri"));
     }
 }

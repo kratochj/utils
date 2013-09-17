@@ -85,7 +85,7 @@ public class StringUtils extends org.apache.commons.lang.StringUtils {
         if (xmlString != null && xmlString.trim().length() > 0) {
             if (xmlString.startsWith("<?")) {
                 // remove xml header
-                if (xmlString.indexOf("?>") < 0) {
+                if (!xmlString.contains("?>")) {
                     return false;
                 }
                 xmlString = xmlString.substring(xmlString.indexOf("?>") + 2);
@@ -145,7 +145,8 @@ public class StringUtils extends org.apache.commons.lang.StringUtils {
      *                 formatting anchors
      * @return The formatted message
      */
-    public static String withArgs(String value, Object[] argArray) {
+    public static String withArgs(String value, Object... argArray) {
+//    public static String withArgs(String value, Object[] argArray) {
         return MessageFormatter.arrayFormat(value, argArray);
     }
 
@@ -190,7 +191,7 @@ public class StringUtils extends org.apache.commons.lang.StringUtils {
      *              anchor
      * @return The formatted message
      */
-    final public static String withArgs(String value, Object arg) {
+    public static String withArgs(String value, Object arg) {
         return withArgs(value, new Object[]{arg});
     }
 
