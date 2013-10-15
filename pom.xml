@@ -95,8 +95,13 @@
                 <version>${version.spring.core}</version>
             </dependency>
 
+	        <dependency>
+		        <groupId>joda-time</groupId>
+		        <artifactId>joda-time</artifactId>
+		        <version>2.3</version>
+	        </dependency>
 
-            <dependency>
+	        <dependency>
                 <groupId>org.slf4j</groupId>
                 <artifactId>slf4j-api</artifactId>
                 <version>1.5.8</version>
