@@ -4,7 +4,7 @@ import org.joda.time.DateTime;
 import org.joda.time.DateTimeUtils;
 
 /**
- * Once upon a time Mark Needham <ahref="http://www.markhneedham.com/blog/2008/09/24/testing-with-joda-time/">wrote</a>
+ * Once upon a time Mark Needham <a href="http://www.markhneedham.com/blog/2008/09/24/testing-with-joda-time/">wrote</a>
  * about freezing Joda Time. Mark gives all the important details for freezing time (which is often helpful for
  * testing), but I came up with some additional code that I like to add on top of his example.
  * <p/>
