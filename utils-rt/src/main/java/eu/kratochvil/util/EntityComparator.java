@@ -12,9 +12,20 @@ import org.slf4j.LoggerFactory;
 
 
 /**
- * TODO Add JavaDoc
+ * Compare two instances of entities. Developer could define which of fields
+ * are compared, by adding this with method {@link #add(String)} with name of
+ * field. That field must be accessible in both entities (public field or
+ * public setter).
+ * <p/>
+ * When objects are not same, differences are printed out on logger.
+ * <p/>
+ * Example:
+ * <code><pre>
+ *  EntityComparator(entityA, entityB).add("field1").add("field2").add("field3").isEquals()
+ * </pre></code>
  *
  * @author Jiri Kratochvil <jiri.kratochvil@topmonks.com>
+ * @see EntityComparatorException
  */
 public class EntityComparator {
 
@@ -33,10 +44,22 @@ public class EntityComparator {
 	StringBuilder _sbB = new StringBuilder();
 
 
+	/**
+	 * Creates instance of comparator
+	 *
+	 * @param entityA Entity A to be compared
+	 * @param entityB Entity B to be compared
+	 */
 	public EntityComparator(Object entityA, Object entityB) {
 		this(entityA, entityB, null);
 	}
 
+	/**
+	 * Creates instance of comparator and pass list of fields to be compared
+	 *
+	 * @param entityA Entity A to be compared
+	 * @param entityB Entity B to be compared
+	 */
 	public EntityComparator(Object entityA, Object entityB, Collection<? extends String> fields) {
 		this.entityA = entityA;
 		this.entityB = entityB;
@@ -68,6 +91,13 @@ public class EntityComparator {
 		}
 	}
 
+	/**
+	 * Add field to the list of compared fields
+	 *
+	 * @param field Name of field
+	 * @return Instance of entity comparator
+	 * @throws EntityComparatorException when field does not exist in both entities
+	 */
 	public EntityComparator add(String field) {
 		if (availableieFldsList.contains(field)) {
 			logger.trace("Adding {} to the comparator pattern", field);
@@ -79,10 +109,20 @@ public class EntityComparator {
 		}
 	}
 
+	/**
+	 * Compares object and returs <code>true</code> when object differs
+	 *
+	 * @return <code>True</code> when object are <strong>not</strong> same.
+	 */
 	public boolean isNotEquals() {
 		return !isEquals();
 	}
 
+	/**
+	 * Compare object and returs <code>true</code> when object differs
+	 *
+	 * @return <code>True</code> when object <strong>are</strong> same.
+	 */
 	public boolean isEquals() {
 		logger.debug("Porovnavam entity {} a {}", entityA.getClass().getSimpleName(), entityB.getClass()
 		                                                                                     .getSimpleName());
