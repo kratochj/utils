@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.Set;
+import java.util.logging.LogManager;
 
 import org.apache.commons.beanutils.BeanUtils;
 import org.slf4j.Logger;
@@ -17,7 +18,7 @@ import org.slf4j.LoggerFactory;
  * field. That field must be accessible in both entities (public field or
  * public setter).
  * <p/>
- * When objects are not same, differences are printed out on logger.
+ * When objects are not same, differences are printed out on debug logger.
  * <p/>
  * Example:
  * <code><pre>
@@ -31,6 +32,8 @@ public class EntityComparator {
 
 	public static final Logger logger = LoggerFactory.getLogger(EntityComparator.class);
 
+	public static final boolean DEFAULT_SKIP_NULLS = true;
+
 	Object entityA;
 
 	Object entityB;
@@ -39,7 +42,6 @@ public class EntityComparator {
 
 	List<String> availableieFldsList = new ArrayList<String>();
 
-	boolean isEquals = true;
 	StringBuilder _sbA = new StringBuilder();
 	StringBuilder _sbB = new StringBuilder();
 
@@ -79,14 +81,14 @@ public class EntityComparator {
 					availableieFldsList.add(fieldA.toString());
 				}
 			}
-		} catch (IllegalAccessException e) {
-			logger.error("Nemohu nacist strukturu objektu - {}", e, e.getMessage());
+		} catch (IllegalAccessException e){
+			logger.error("Nemohu nacist strukturu objektu - {}", e.getMessage(), e);
 			throw new EntityComparatorException(e.getMessage(), e);
 		} catch (InvocationTargetException e) {
-			logger.error("Nemohu nacist strukturu objektu - {}", e, e.getMessage());
+			logger.error("Nemohu nacist strukturu objektu - {}", e.getMessage(), e);
 			throw new EntityComparatorException(e.getMessage(), e);
 		} catch (NoSuchMethodException e) {
-			logger.error("Nemohu nacist strukturu objektu - {}", e, e.getMessage());
+			logger.error("Nemohu nacist strukturu objektu - {}", e.getMessage(), e);
 			throw new EntityComparatorException(e.getMessage(), e);
 		}
 	}
@@ -109,23 +111,33 @@ public class EntityComparator {
 		}
 	}
 
+	public boolean isEquals() {
+		return isEquals(DEFAULT_SKIP_NULLS);
+	}
+
+	public boolean isNotEquals() {
+		return isNotEquals(DEFAULT_SKIP_NULLS);
+	}
+
 	/**
 	 * Compares object and returs <code>true</code> when object differs
 	 *
 	 * @return <code>True</code> when object are <strong>not</strong> same.
 	 */
-	public boolean isNotEquals() {
-		return !isEquals();
+	public boolean isNotEquals(boolean skipNulls) {
+		return !isEquals(skipNulls);
 	}
 
 	/**
-	 * Compare object and returs <code>true</code> when object differs
+	 * Compare object and returs <code>true</code> when object differs. Null values are excluded from coparison.
 	 *
 	 * @return <code>True</code> when object <strong>are</strong> same.
 	 */
-	public boolean isEquals() {
+	public boolean isEquals(boolean skipNulls) {
 		logger.debug("Porovnavam entity {} a {}", entityA.getClass().getSimpleName(), entityB.getClass()
 		                                                                                     .getSimpleName());
+		boolean isEquals = true;
+
 		try {
 			for (String field : fields) {
 				logger.trace("  Porovnavam atribut: {}", field);
@@ -137,31 +149,34 @@ public class EntityComparator {
 				appendBoth(field + "=");
 
 				Object fieldA = BeanUtils.getProperty(entityA, field);
-				_sbA.append("\"").append(fieldA).append("\"");
-
 				Object fieldB = BeanUtils.getProperty(entityB, field);
-				_sbB.append("\"").append(fieldB).append("\"");
 
-				if (fieldA.equals(fieldB)) {
-					logger.trace("    Hodnoty se shoduji: \"{}\"", fieldA);
+				if (skipNulls && ((fieldA == null) || (fieldB == null))) {
+					logger.trace("    Ignoruji pole: {}", field);
+					appendBoth("<IGNORED>");
 				} else {
-					logger.trace("    Hodnoty se neshoduji: \"{}\"|\"{}\"", fieldA, fieldB);
-					isEquals = false;
+					_sbA.append("\"").append(fieldA).append("\"");
+					_sbB.append("\"").append(fieldB).append("\"");
+					if (!compare(fieldA, fieldB)) {
+						isEquals = false;
+					}
 				}
 			}
 			appendBoth("]");
-		} catch (IllegalAccessException e) {
-			logger.error("Chyba pri porovnavani entit - {}", e, e.getMessage());
+		} catch (IllegalAccessException e){
+			logger.error("Chyba pri porovnavani entit - {}", e.getMessage(), e);
 			throw new EntityComparatorException(e.getMessage(), e);
 		} catch (InvocationTargetException e) {
-			logger.error("Chyba pri porovnavani entit - {}", e, e.getMessage());
+			logger.error("Chyba pri porovnavani entit - {}", e.getMessage(), e);
 			throw new EntityComparatorException(e.getMessage(), e);
 		} catch (NoSuchMethodException e) {
-			logger.error("Chyba pri porovnavani entit - {}", e, e.getMessage());
+			logger.error("Chyba pri porovnavani entit - {}", e.getMessage(), e);
 			throw new EntityComparatorException(e.getMessage(), e);
 		}
 		if (isEquals) {
 			logger.debug("Entity se shoduji");
+			logger.trace("  EntityA: {}", _sbA.toString());
+			logger.trace("  EntityB: {}", _sbB.toString());
 			return true;
 		} else {
 			logger.debug("Entity se neshoduji");
@@ -172,8 +187,28 @@ public class EntityComparator {
 
 	}
 
+
+	private boolean compare(Object fieldA, Object fieldB) {
+		if (fieldA == fieldB) {
+			return true;
+		}
+
+		if (fieldA == null) {
+			return false;
+		}
+
+		if (fieldA.equals(fieldB)) {
+			logger.trace("    Hodnoty se shoduji: \"{}\"", fieldA);
+			return true;
+		} else {
+			logger.trace("    Hodnoty se neshoduji: \"{}\"|\"{}\"", fieldA, fieldB);
+			return false;
+		}
+	}
+
 	private void appendBoth(String value) {
 		_sbA.append(value);
 		_sbB.append(value);
 	}
+
 }

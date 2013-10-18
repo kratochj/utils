@@ -1,6 +1,8 @@
 package eu.kratochvil.util;
 
 /**
+ * Exception is thrown when something wrong in {@link EntityComparator} hapened.
+ *
  * @author Jiri Kratochvil <jiri.kratochvil@topmonks.com>
  */
 public class EntityComparatorException extends RuntimeException {
