@@ -6,6 +6,16 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
 /**
+ * Formatter for <a href="https://code.google.com/p/json-simple/">JSON SImple implementation</a>
+ * <p/>
+ * <code><pre>
+ *     public static void main(final String[] args) throws JSONException{
+ *          final JSONObject obj =
+ *          new JSONObject("{\"glossary\":{\"title\": \"example glossary\", \"GlossDiv\":{\"title\": \"S\", \"GlossList\":{\"GlossEntry\":{\"ID\": \"SGML\", \"SortAs\": \"SGML\", \"GlossTerm\": \"Standard Generalized Markup Language\", \"Acronym\": \"SGML\", \"Abbrev\": \"ISO 8879:1986\", \"GlossDef\":{\"para\": \"A meta-markup language, used to create markup languages such as DocBook.\", \"GlossSeeAlso\": [\"GML\", \"XML\"]}, \"GlossSee\": \"markup\"}}}}}");
+ *          System.out.println(JsonFormatter.format(obj));
+ *      }
+ * </pre></code>
+ *
  * @author Jiri Kratochvil <jiri.kratochvil@topmonks.com>
  */
 public class JsonFormatter {
