@@ -24,8 +24,11 @@ import org.json.simple.JSONObject;
  */
 public class JsonFormatter {
 
+	public static final int DEFAULT_INDENTATION_SIZE = 4;
+	public static final char DEFAULT_INDENTATION_CHAR = ' ';
+
 	public static String format(final JSONObject object) {
-		final JsonVisitor visitor = new JsonVisitor(4, ' ');
+		final JsonVisitor visitor = new JsonVisitor(DEFAULT_INDENTATION_SIZE, DEFAULT_INDENTATION_CHAR);
 		visitor.visit(object, 0);
 		return visitor.toString();
 	}
