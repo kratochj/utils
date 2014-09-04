@@ -19,12 +19,12 @@ Just simple add dependency in your project as example:
     <dependency>
         <groupId>eu.kratochvil</groupId>
         <artifactId>utils-rt</artifactId>
-        <version>1.1</version>
+        <version>1.7</version>
     </dependency>
     <dependency>
         <groupId>eu.kratochvil</groupId>
         <artifactId>utils-test</artifactId>
-        <version>1.1</version>
+        <version>1.7</version>
         <scope>test</scope>
     </dependency>
 
