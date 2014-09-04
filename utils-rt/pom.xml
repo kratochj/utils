@@ -2,7 +2,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>utils-rt</artifactId>
-    <version>1.7</version>
+    <version>1.7-SNAPSHOT</version>
     <packaging>jar</packaging>
 
     <name>utils-rt</name>
@@ -15,7 +15,7 @@
     <parent>
         <groupId>eu.kratochvil</groupId>
         <artifactId>utils</artifactId>
-        <version>1.7</version>
+        <version>1.7-SNAPSHOT</version>
         <relativePath>..</relativePath>
     </parent>
 
