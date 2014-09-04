@@ -35,9 +35,9 @@
     </parent>
 
     <scm>
-        <connection>scm:git:git@git.kratochvil.eu:kratochj/java-utils.git</connection>
-        <url>http://git.kratochvil.eu/kratochj/java-utils.git</url>
-        <developerConnection>scm:git:git@git.kratochvil.eu:kratochj/java-utils.git</developerConnection>
+        <connection>scm:git:scm:git:git@github.com:kratochj/utils.git</connection>
+        <url>https://github.com/kratochj/utils.git</url>
+        <developerConnection>scm:git:scm:git:git@github.com:kratochj/utils.git</developerConnection>
     </scm>
 
     <licenses>
