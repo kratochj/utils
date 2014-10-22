@@ -1,3 +1,5 @@
+[ ![Codeship Status for kratochj/utils](https://codeship.io/projects/d7a5bed0-3b2b-0132-060c-1e7e00028aa9/status)](https://codeship.io/projects/42554)
+
 Java Utils
 ==========
 
