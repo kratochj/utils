@@ -2,7 +2,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>utils-rt</artifactId>
-    <version>1.7-SNAPSHOT</version>
+    <version>2.1-SNAPSHOT</version>
     <packaging>jar</packaging>
 
     <name>utils-rt</name>
@@ -15,7 +15,7 @@
     <parent>
         <groupId>eu.kratochvil</groupId>
         <artifactId>utils</artifactId>
-        <version>1.7-SNAPSHOT</version>
+        <version>2.1-SNAPSHOT</version>
         <relativePath>..</relativePath>
     </parent>
 
@@ -46,6 +46,12 @@
 	    </dependency>
 
         <dependency>
+            <groupId>joda-time</groupId>
+            <artifactId>joda-time</artifactId>
+        </dependency>
+
+
+        <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-beans</artifactId>
         </dependency>
@@ -74,6 +80,11 @@
 		    <groupId>com.googlecode.json-simple</groupId>
 		    <artifactId>json-simple</artifactId>
 	    </dependency>
+
+        <dependency>
+            <groupId>org.mockito</groupId>
+            <artifactId>mockito-all</artifactId>
+        </dependency>
 
     </dependencies>
 </project>
